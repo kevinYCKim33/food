@@ -8,7 +8,9 @@ export default () => {
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
+  // https://www.yelp.com/developers/documentation/v3/business_search
   const searchApi = async (searchTerm) => {
+    // oh wow totally missed the try catch block
     try {
       const response = await yelp.get("/search", {
         params: {
@@ -23,11 +25,8 @@ export default () => {
     }
   };
 
-  // Call searchApi when component
-  // is first rendered.  BAD CODE!
-  // searchApi('pasta');
   useEffect(() => {
-    searchApi("pasta"); // this is bad code?? idk...maybe a default screen would have helped
+    searchApi("pasta");
   }, []); // hmmm could have also used some sort of debounce here?
 
   return [searchApi, results, errorMessage];

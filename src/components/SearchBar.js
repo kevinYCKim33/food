@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
-import { Feather } from "@expo/vector-icons"; // what is Feather??
+// https://icons.expo.fyi/
+import { Feather } from "@expo/vector-icons"; // Feather: Icon library like FontAwesome
 
 const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
   return (
@@ -8,9 +9,9 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
       <Feather name="search" style={styles.iconStyle} />
       <TextInput
         autoCapitalize="none"
-        autoCorrect={false}
+        autoCorrect={false} // some restaurants have funky names
         style={styles.inputStyle}
-        placeholder="Search"
+        placeholder="Search" // placeholder is clutch
         value={term}
         onChangeText={onTermChange}
         onEndEditing={onTermSubmit} // onEndEditing is a new one for me
@@ -28,16 +29,21 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     flexDirection: "row", // aah I can think clearer now
     marginBottom: 10,
-    // alignItems: "center", // yes you can also do this
+    // alignItems: "center", // don't do this because...
   },
   iconStyle: {
-    fontSize: 35,
-    alignSelf: "center", // why not alignItems center for the whole View?
+    fontSize: 35, // fontSize actually
+    // alignSelf: "center", // why not alignItems center for the whole View?
+    // ...by default, inputStyle will stretch vertically as alignItems is set to stretch
+    // ...if you do alignItems: center though, the input div's height will shrink to bare minimum
+    // now user has much less thumbspace to click on Search to start typing...
     marginHorizontal: 15,
   },
   inputStyle: {
-    flex: 1, // what does flex 1 do here? stretch out horizontally
+    flex: 1, // since flexDirection is set to row, this will now take up remaining horz space of the screen
     fontSize: 18,
+    // borderWidth: 1,
+    // borderColor: "black",
   },
 });
 

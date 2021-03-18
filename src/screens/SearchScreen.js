@@ -7,7 +7,6 @@ import ResultsList from "../components/ResultsList";
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults(); // custom hook!
-  // anyways
 
   // oh executed thrice...doesn't seem very O(n) friendly...
   // why not just do one pass and organize it into categories?
@@ -17,6 +16,9 @@ const SearchScreen = () => {
       return result.price === price;
     });
   };
+
+  // searchApi(term) ==> this would cause an infinite loop!
+  // results gets updated ==> rerenders ==> sees searchApi again ==> results get updated ==> rerenders
 
   return (
     <>
@@ -31,6 +33,7 @@ const SearchScreen = () => {
           // [results, searchApi, errorMessage] would've been a slightly familiar syntax
         }
       />
+      {/* nothing really here to handle wiping away an error*/}
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <ScrollView>
         <ResultsList
