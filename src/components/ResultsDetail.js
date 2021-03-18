@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Image, Text, StyleSheet } from "react-native";
 
+// Each Card in a category of Cost Effective, Bit Pricier, etc...
 const ResultsDetail = ({ result }) => {
   return (
     <View style={styles.container}>
@@ -15,17 +16,17 @@ const ResultsDetail = ({ result }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 15
+    marginLeft: 15, // I wonder if there is :not-last-child prop or something
   },
   image: {
     width: 250,
     height: 120,
-    borderRadius: 4,
-    marginBottom: 5
+    borderRadius: 4, // yes I see the rounded corners in the image
+    marginBottom: 5,
   },
   name: {
-    fontWeight: 'bold'
-  }
+    fontWeight: "bold",
+  },
 });
 
 export default ResultsDetail;
